@@ -1,26 +1,75 @@
 import streamlit as st
-import pandas as pd
 
 # ==========================
 # ⚙️ CẤU HÌNH TRANG
 # ==========================
 st.set_page_config(
     page_title="Topic 5 – Sentiment Analysis for E-Commerce",
-    page_icon="https://tse4.mm.bing.net/th/id/OIP.ftwMemyVfX2__Kg4dh99wwHaJ3?w=640&h=852&rs=1&pid=ImgDetMain&o=7&rm=3",
+    page_icon="https://cdn-icons-png.flaticon.com/512/263/263142.png",
     layout="wide"
 )
+
+# ==========================
+# 🎨 SIDEBAR – NAVIGATION + THEME
+# ==========================
+st.sidebar.markdown("## 🧭 Navigation")
+
+page = st.sidebar.radio(
+    "Go to:",
+    [
+        "Home – Giới thiệu đề tài",
+        "Analysis – Sentiment Analysis",
+        "Training Info – Thông tin mô hình"
+    ]
+)
+
+theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
+
+# ==========================
+# 🌈 CUSTOM CSS
+# ==========================
+light_css = """
+<style>
+body {
+    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+    color: #333;
+}
+div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
+    background: #ffffffcc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+</style>
+"""
+
+dark_css = """
+<style>
+body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #f0f0f0;
+}
+div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
+    background: #2c2c2ccc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    color: #f0f0f0;
+}
+</style>
+"""
+
+if theme == "🌞 Light":
+    st.markdown(light_css, unsafe_allow_html=True)
+else:
+    st.markdown(dark_css, unsafe_allow_html=True)
 
 # ==========================
 # 🎨 HEADER
 # ==========================
 col1, col2 = st.columns([1, 9])
-
 with col1:
-    st.image(
-        "https://cdn-icons-png.flaticon.com/512/263/263142.png",
-        width=70
-    )
-
+    st.image("https://cdn-icons-png.flaticon.com/512/263/263142.png", width=70)
 with col2:
     st.markdown(
         """
@@ -37,36 +86,14 @@ with col2:
 st.write("---")
 
 # ==========================
-# 📌 SIDEBAR – NAVIGATION
-# ==========================
-st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=80)
-st.sidebar.markdown("## 🧭 Navigation")
-
-page = st.sidebar.radio(
-    "Go to:",
-    [
-        "Home – Giới thiệu đề tài",
-        "Analysis – Sentiment Analysis",
-        "Training Info – Thông tin mô hình"
-    ]
-)
-
-# Dark/Light theme toggle
-theme = st.sidebar.selectbox("🎨 Theme", ["Light", "Dark"])
-if theme == "Dark":
-    st.markdown("<style>body{background-color:#1e1e1e;color:white;}</style>", unsafe_allow_html=True)
-
-# ==========================
 # 📦 ROUTING
 # ==========================
 if page == "Home – Giới thiệu đề tài":
     from pages.Home import show
     show()
-
 elif page == "Analysis – Sentiment Analysis":
     from pages.Analysis import show
     show()
-
 elif page == "Training Info – Thông tin mô hình":
     from pages.Training_Info import show
     show()
@@ -76,13 +103,12 @@ elif page == "Training Info – Thông tin mô hình":
 # ==========================
 st.markdown("---")
 
-# -------- STUDENTS BOX (YELLOW) --------
 st.markdown(
     """
     <div style="
         background:#fffbd6;
         border:1px solid #f0d878;
-        border-radius:10px;
+        border-radius:12px;
         padding:16px 20px;
         max-width:900px;
         margin: 0 auto 14px auto;
@@ -97,13 +123,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# -------- INSTRUCTOR BOX (GRAY) --------
 st.markdown(
     """
     <div style="
         background:#f8f9fa;
         border:1px solid #ddd;
-        border-radius:10px;
+        border-radius:12px;
         padding:14px 20px;
         max-width:900px;
         margin: 0 auto;
@@ -127,7 +152,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# -------- COPYRIGHT + SOCIAL ICONS --------
 st.markdown(
     """
     <div style="
