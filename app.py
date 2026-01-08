@@ -3,10 +3,16 @@ import streamlit as st
 # ==========================
 # ⚙️ CẤU HÌNH TRANG
 # ==========================
-st.set_page_config(
-    page_title="Topic 5 – Sentiment Analysis for E-Commerce",
-    page_icon="https://cdn-icons-png.flaticon.com/512/263/263142.png",
-    layout="wide"
+st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=80)
+st.sidebar.markdown("## 🧭 Navigation")
+
+page = st.sidebar.radio(
+    "Go to:",
+    [
+        "Home – Giới thiệu đề tài",
+        "Analysis – Sentiment Analysis",
+        "Training Info – Thông tin mô hình"
+    ]
 )
 
 # ==========================
