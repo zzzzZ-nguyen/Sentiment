@@ -10,59 +10,44 @@ st.set_page_config(
 )
 
 # ==========================
-# 🎨 SIDEBAR – NAVIGATION + THEME
-# ==========================
-st.sidebar.markdown("## 🧭 Navigation")
-
-page = st.sidebar.radio(
-    "Go to:",
-    [
-        "Home – Giới thiệu đề tài",
-        "Analysis – Sentiment Analysis",
-        "Training Info – Thông tin mô hình"
-    ]
-)
-
-theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
-
-# ==========================
 # 🌈 CUSTOM CSS
 # ==========================
-light_css = """
+st.markdown("""
 <style>
+/* Background gradient */
 body {
-    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-    color: #333;
+    background: linear-gradient(135deg, #f0f4f8, #d9e4ec);
 }
-div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
-    background: #ffffffcc;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
+
+/* Card style */
+.card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 18px 22px;
+    margin: 15px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 900px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Title inside card */
+.card-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: #2b6f3e;
+    margin-bottom: 8px;
+}
+
+/* Footer */
+.footer {
+    text-align:center;
+    margin-top:20px;
+    font-size:13px;
+    color:#555;
 }
 </style>
-"""
-
-dark_css = """
-<style>
-body {
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    color: #f0f0f0;
-}
-div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
-    background: #2c2c2ccc;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-    color: #f0f0f0;
-}
-</style>
-"""
-
-if theme == "🌞 Light":
-    st.markdown(light_css, unsafe_allow_html=True)
-else:
-    st.markdown(dark_css, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ==========================
 # 🎨 HEADER
@@ -88,6 +73,12 @@ st.write("---")
 # ==========================
 # 📦 ROUTING
 # ==========================
+page = st.sidebar.radio("Go to:", [
+    "Home – Giới thiệu đề tài",
+    "Analysis – Sentiment Analysis",
+    "Training Info – Thông tin mô hình"
+])
+
 if page == "Home – Giới thiệu đề tài":
     from pages.Home import show
     show()
@@ -99,75 +90,48 @@ elif page == "Training Info – Thông tin mô hình":
     show()
 
 # ==========================
-# 👣 FOOTER
+# 👣 FOOTER – CARDS
 # ==========================
 st.markdown("---")
 
+# -------- STUDENTS CARD --------
 st.markdown(
     """
-    <div style="
-        background:#fffbd6;
-        border:1px solid #f0d878;
-        border-radius:12px;
-        padding:16px 20px;
-        max-width:900px;
-        margin: 0 auto 14px auto;
-        font-size:14px;
-        line-height:1.7;
-    ">
-        <b>Students:</b><br>
-        - Bui Duc Nguyen-235053154-nguyenbd23@uef.edu.vn<br>
-        - Huynh Ngoc Minh Quan-235052863-quanhnm@uef.edu.vn
+    <div class="card">
+        <div class="card-title">👨‍🎓 Students</div>
+        <ul style="margin:0; padding-left:18px;">
+            <li>Bui Duc Nguyen – 235053154 – nguyenbd23@uef.edu.vn</li>
+            <li>Huynh Ngoc Minh Quan – 235052863 – quanhnm@uef.edu.vn</li>
+        </ul>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+# -------- INSTRUCTOR CARD --------
 st.markdown(
     """
-    <div style="
-        background:#f8f9fa;
-        border:1px solid #ddd;
-        border-radius:12px;
-        padding:14px 20px;
-        max-width:900px;
-        margin: 0 auto;
-        font-size:14px;
-        display:flex;
-        align-items:center;
-        gap:10px;
-    ">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg"
-             width="22">
-        <div>
-            <b>Bùi Tiến Đức</b> –
-            <a href="https://orcid.org/0000-0001-5174-3558"
-               target="_blank"
-               style="text-decoration:none; color:#1a73e8;">
-               ORCID: 0000-0001-5174-3558
-            </a>
+    <div class="card">
+        <div class="card-title">👨‍🏫 Instructor</div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" width="22">
+            <div>
+                <b>Bùi Tiến Đức</b> – 
+                <a href="https://orcid.org/0000-0001-5174-3558" target="_blank" style="text-decoration:none; color:#1a73e8;">
+                    ORCID: 0000-0001-5174-3558
+                </a>
+            </div>
         </div>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+# -------- COPYRIGHT --------
 st.markdown(
     """
-    <div style="
-        text-align:center;
-        margin-top:10px;
-        font-size:13px;
-        color:#666;
-    ">
+    <div class="footer">
         © 2025 – Topic 5: Sentiment Analysis for E-Commerce
-        <br><br>
-        <a href="https://www.facebook.com/uef.edu.vn" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="22">
-        </a>
-        <a href="https://www.linkedin.com" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="22">
-        </a>
     </div>
     """,
     unsafe_allow_html=True
