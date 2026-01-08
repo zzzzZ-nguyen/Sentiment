@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 # ==========================
 # ⚙️ CẤU HÌNH TRANG
@@ -38,6 +39,7 @@ st.write("---")
 # ==========================
 # 📌 SIDEBAR – NAVIGATION
 # ==========================
+st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=80)
 st.sidebar.markdown("## 🧭 Navigation")
 
 page = st.sidebar.radio(
@@ -48,6 +50,11 @@ page = st.sidebar.radio(
         "Training Info – Thông tin mô hình"
     ]
 )
+
+# Dark/Light theme toggle
+theme = st.sidebar.selectbox("🎨 Theme", ["Light", "Dark"])
+if theme == "Dark":
+    st.markdown("<style>body{background-color:#1e1e1e;color:white;}</style>", unsafe_allow_html=True)
 
 # ==========================
 # 📦 ROUTING
@@ -65,7 +72,7 @@ elif page == "Training Info – Thông tin mô hình":
     show()
 
 # ==========================
-# 👣 FOOTER (MATCH IMAGE UI)
+# 👣 FOOTER
 # ==========================
 st.markdown("---")
 
@@ -83,7 +90,7 @@ st.markdown(
         line-height:1.7;
     ">
         <b>Students:</b><br>
-        - Bui Duc Nguyen-235053154-nguyenbd23@uef.edu.vn
+        - Bui Duc Nguyen-235053154-nguyenbd23@uef.edu.vn<br>
         - Huynh Ngoc Minh Quan-235052863-quanhnm@uef.edu.vn
     </div>
     """,
@@ -120,7 +127,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# -------- COPYRIGHT --------
+# -------- COPYRIGHT + SOCIAL ICONS --------
 st.markdown(
     """
     <div style="
@@ -130,6 +137,13 @@ st.markdown(
         color:#666;
     ">
         © 2025 – Topic 5: Sentiment Analysis for E-Commerce
+        <br><br>
+        <a href="https://www.facebook.com/uef.edu.vn" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="22">
+        </a>
+        <a href="https://www.linkedin.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="22">
+        </a>
     </div>
     """,
     unsafe_allow_html=True
