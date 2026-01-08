@@ -32,43 +32,31 @@ page = st.sidebar.radio(
 theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
 
 # ==========================
-# 🌈 CUSTOM CSS
+# 🌈 CUSTOM CSS CHO SIDEBAR
 # ==========================
-light_css = """
+st.markdown("""
 <style>
-body {
-    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-    color: #333;
+/* Avatar khung tròn + shadow */
+.sidebar-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
 }
-div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
-    background: #ffffffcc;
-    border-radius: 12px;
-    padding: 12px;
+.sidebar-avatar img {
+    border-radius: 50%;
+    border: 3px solid #4CAF50;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 90px;
+}
+.sidebar-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #2b6f3e;
     margin-bottom: 10px;
 }
 </style>
-"""
-
-dark_css = """
-<style>
-body {
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    color: #f0f0f0;
-}
-div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
-    background: #2c2c2ccc;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-    color: #f0f0f0;
-}
-</style>
-"""
-
-if theme == "🌞 Light":
-    st.markdown(light_css, unsafe_allow_html=True)
-else:
-    st.markdown(dark_css, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ==========================
 # 🎨 HEADER
