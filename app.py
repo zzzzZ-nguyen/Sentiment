@@ -1,42 +1,17 @@
 import streamlit as st
 
-# ==========================
-# ⚙️ CẤU HÌNH TRANG
-# ==========================
-st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=80)
-st.sidebar.markdown("## 🧭 Navigation")
-
-page = st.sidebar.radio(
-    "Go to:",
-    [
-        "Home – Giới thiệu đề tài",
-        "Analysis – Sentiment Analysis",
-        "Training Info – Thông tin mô hình"
-    ]
+st.set_page_config(
+    page_title="Topic 5 – Sentiment Analysis for E-Commerce",
+    page_icon="https://cdn-icons-png.flaticon.com/512/263/263142.png",
+    layout="wide"
 )
 
 # ==========================
-# 🎨 SIDEBAR – NAVIGATION + THEME
-# ==========================
-st.sidebar.markdown("## 🧭 Navigation")
-
-page = st.sidebar.radio(
-    "Go to:",
-    [
-        "Home – Giới thiệu đề tài",
-        "Analysis – Sentiment Analysis",
-        "Training Info – Thông tin mô hình"
-    ]
-)
-
-theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
-
-# ==========================
-# 🌈 CUSTOM CSS CHO SIDEBAR
+# 🌈 CUSTOM CSS CHỈNH MÀU
 # ==========================
 st.markdown("""
 <style>
-/* Avatar khung tròn + shadow */
+/* Avatar khung tròn + màu viền */
 .sidebar-avatar {
     display: flex;
     justify-content: center;
@@ -44,40 +19,50 @@ st.markdown("""
 }
 .sidebar-avatar img {
     border-radius: 50%;
-    border: 3px solid #4CAF50;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 3px solid #2b6f3e;   /* viền xanh lá */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     width: 90px;
 }
+
+/* Tiêu đề Navigation */
 .sidebar-title {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
-    color: #2b6f3e;
-    margin-bottom: 10px;
+    color: #1a73e8;   /* xanh dương nổi bật */
+    margin-bottom: 12px;
+}
+
+/* Radio button màu đẹp */
+div[role="radiogroup"] > label {
+    background: #f0f8ff;
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin: 4px 0;
+}
+div[role="radiogroup"] > label:hover {
+    background: #d6eaf8;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # ==========================
-# 🎨 HEADER
+# 📌 SIDEBAR – NAVIGATION
 # ==========================
-col1, col2 = st.columns([1, 9])
-with col1:
-    st.image("https://cdn-icons-png.flaticon.com/512/263/263142.png", width=70)
-with col2:
-    st.markdown(
-        """
-        <h2 style="color:#2b6f3e; margin-bottom:0;">
-        Topic 5: Developing a Sentiment Analysis Application for Product Reviews
-        </h2>
-        <h4 style="color:#555; margin-top:4px;">
-        Supporting E-Commerce Business Decision Making (Open-source + Streamlit)
-        </h4>
-        """,
-        unsafe_allow_html=True
-    )
+st.sidebar.markdown(
+    '<div class="sidebar-avatar"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>',
+    unsafe_allow_html=True
+)
+st.sidebar.markdown('<div class="sidebar-title">🧭 Navigation</div>', unsafe_allow_html=True)
 
-st.write("---")
+page = st.sidebar.radio(
+    "Go to:",
+    [
+        "Home – Giới thiệu đề tài",
+        "Analysis – Sentiment Analysis",
+        "Training Info – Thông tin mô hình"
+    ]
+)
 
 # ==========================
 # 📦 ROUTING
