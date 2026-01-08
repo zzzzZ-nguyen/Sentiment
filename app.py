@@ -1,5 +1,8 @@
 import streamlit as st
 
+# ==========================
+# 1. CONFIG PAGE (Phải luôn ở đầu)
+# ==========================
 st.set_page_config(
     page_title="Topic 5 – Sentiment Analysis for E-Commerce",
     page_icon="https://cdn-icons-png.flaticon.com/512/263/263142.png",
@@ -7,7 +10,28 @@ st.set_page_config(
 )
 
 # ==========================
-# 🌈 CUSTOM CSS CHỈNH MÀU
+# 2. SIDEBAR – NAVIGATION (Di chuyển lên đây để định nghĩa biến 'theme')
+# ==========================
+st.sidebar.markdown(
+    '<div class="sidebar-avatar"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>',
+    unsafe_allow_html=True
+)
+st.sidebar.markdown('<div class="sidebar-title">🧭 Navigation</div>', unsafe_allow_html=True)
+
+page = st.sidebar.radio(
+    "Go to:",
+    [
+        "Home – Giới thiệu đề tài",
+        "Analysis – Sentiment Analysis",
+        "Training Info – Thông tin mô hình"
+    ]
+)
+
+# --- ĐỊNH NGHĨA BIẾN THEME TẠI ĐÂY ---
+theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"]) 
+
+# ==========================
+# 3. CSS STYLING (Chạy sau khi đã có biến 'theme')
 # ==========================
 st.markdown("""
 <style>
@@ -46,9 +70,6 @@ div[role="radiogroup"] > label:hover {
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================
-# 🌈 CUSTOM CSS
-# ==========================
 light_css = """
 <style>
 body {
@@ -79,48 +100,41 @@ div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
 }
 </style>
 """
+
+# Bây giờ biến 'theme' đã tồn tại, lệnh if này sẽ chạy đúng
 if theme == "🌞 Light":
     st.markdown(light_css, unsafe_allow_html=True)
 else:
     st.markdown(dark_css, unsafe_allow_html=True)
 
 
+# ==========================
+# 4. ROUTING
+# ==========================
+# Lưu ý: Bạn cần đảm bảo có thư mục 'pages' chứa các file Home.py, Analysis.py, Training_Info.py
+# và bên trong các file đó có hàm show()
 
-# ==========================
-# 📌 SIDEBAR – NAVIGATION
-# ==========================
-st.sidebar.markdown(
-    '<div class="sidebar-avatar"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>',
-    unsafe_allow_html=True
-)
-st.sidebar.markdown('<div class="sidebar-title">🧭 Navigation</div>', unsafe_allow_html=True)
-
-page = st.sidebar.radio(
-    "Go to:",
-    [
-        "Home – Giới thiệu đề tài",
-        "Analysis – Sentiment Analysis",
-        "Training Info – Thông tin mô hình"
-    ]
-)
-theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
-
-# ==========================
-# 📦 ROUTING
-# ==========================
 if page == "Home – Giới thiệu đề tài":
-    from pages.Home import show
-    show()
+    # from pages.Home import show
+    # show()
+    st.title("Home Page Placeholder") # Demo để code chạy được nếu chưa có file
+    st.write("Nội dung trang Home...")
+    
 elif page == "Analysis – Sentiment Analysis":
-    from pages.Analysis import show
-    show()
+    # from pages.Analysis import show
+    # show()
+    st.title("Analysis Page Placeholder")
+    st.write("Nội dung trang Analysis...")
+
 elif page == "Training Info – Thông tin mô hình":
-    from pages.Training_Info import show
-    show()
+    # from pages.Training_Info import show
+    # show()
+    st.title("Training Info Placeholder")
+    st.write("Nội dung trang Training Info...")
 
 
 # ==========================
-# 👣 FOOTER – CARDS
+# 5. FOOTER – CARDS
 # ==========================
 st.markdown("---")
 
