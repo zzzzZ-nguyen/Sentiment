@@ -79,7 +79,6 @@ div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
 }
 </style>
 """
-
 if theme == "🌞 Light":
     st.markdown(light_css, unsafe_allow_html=True)
 else:
