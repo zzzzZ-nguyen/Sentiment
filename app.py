@@ -47,6 +47,47 @@ div[role="radiogroup"] > label:hover {
 """, unsafe_allow_html=True)
 
 # ==========================
+# 🌈 CUSTOM CSS
+# ==========================
+light_css = """
+<style>
+body {
+    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+    color: #333;
+}
+div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
+    background: #ffffffcc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+</style>
+"""
+
+dark_css = """
+<style>
+body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #f0f0f0;
+}
+div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
+    background: #2c2c2ccc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    color: #f0f0f0;
+}
+</style>
+"""
+
+if theme == "🌞 Light":
+    st.markdown(light_css, unsafe_allow_html=True)
+else:
+    st.markdown(dark_css, unsafe_allow_html=True)
+
+
+
+# ==========================
 # 📌 SIDEBAR – NAVIGATION
 # ==========================
 st.sidebar.markdown(
@@ -63,6 +104,7 @@ page = st.sidebar.radio(
         "Training Info – Thông tin mô hình"
     ]
 )
+theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
 
 # ==========================
 # 📦 ROUTING
