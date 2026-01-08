@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 # ==========================
 # 1. CẤU HÌNH TRANG (Luôn ở đầu)
@@ -43,8 +44,6 @@ with st.sidebar:
 # Định nghĩa màu sắc dựa trên theme
 if theme_mode == "🌊 Ocean Blue (Light)":
     # Gradient xanh dương nhẹ nhàng + mây trắng
-    bg_gradient = "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)" # Colorful
-    bg_gradient = "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)" # Blue Sky
     main_bg = """
         background: linear-gradient(-45deg, #a18cd1, #fbc2eb, #a6c1ee, #96e6a1);
         background-size: 400% 400%;
@@ -82,11 +81,6 @@ st.markdown(f"""
 }}
 
 /* 2. CARD DESIGN (GLASSMORPHISM) */
-div.css-1r6slb0, div.stMarkdown, div.stDataFrame, div[data-testid="stMetricValue"] {{
-    /* Không style trực tiếp các div mặc định quá nhiều để tránh vỡ layout, 
-       thay vào đó ta dùng class .custom-card bên dưới */
-}}
-
 /* Tạo class thẻ bài (Card) riêng để bọc nội dung */
 .custom-card {{
     background: {card_bg};
@@ -223,7 +217,6 @@ elif page == "📊 Analysis (Phân tích)":
     if analyze_btn and user_input:
         with st.spinner("Analyzing..."):
             # Giả lập xử lý (Bạn thay thế bằng model thực tế ở đây)
-            import time
             time.sleep(1) 
             sentiment = "Positive" # Thay bằng kết quả model
             score = 0.86
@@ -254,7 +247,7 @@ elif page == "ℹ️ Training Info (Mô hình)":
         card_start()
         st.markdown("### 🇬🇧 English Model")
         st.markdown("""
-        * [cite_start]**Algorithm:** Logistic Regression [cite: 32]
+        * **Algorithm:** Logistic Regression
         * **Feature Extraction:** TF-IDF Vectorization
         * **Accuracy:** 86%
         * **F1-Score:** 0.84
@@ -265,7 +258,7 @@ elif page == "ℹ️ Training Info (Mô hình)":
         card_start()
         st.markdown("### 🇻🇳 Vietnamese Model")
         st.markdown("""
-        * [cite_start]**Approach:** Rule-Based (Dictionary) [cite: 33]
+        * **Approach:** Rule-Based (Dictionary)
         * **Logic:** Positive - Negative Keyword Counting
         * **Libraries:** Python Built-in, RegEx
         """)
@@ -278,7 +271,7 @@ elif page == "ℹ️ Training Info (Mô hình)":
         "Accuracy": ["86%", "87%", "88%"],
         "Training Time": ["0.5s (Fastest)", "4.2s", "15.6s"]
     })
-    [cite_start]st.caption("Table 1: Performance Comparison [cite: 112]")
+    st.caption("Table 1: Performance Comparison")
     card_end()
 
 # ==========================
