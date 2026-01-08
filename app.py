@@ -10,44 +10,59 @@ st.set_page_config(
 )
 
 # ==========================
+# 🎨 SIDEBAR – NAVIGATION + THEME
+# ==========================
+st.sidebar.markdown("## 🧭 Navigation")
+
+page = st.sidebar.radio(
+    "Go to:",
+    [
+        "Home – Giới thiệu đề tài",
+        "Analysis – Sentiment Analysis",
+        "Training Info – Thông tin mô hình"
+    ]
+)
+
+theme = st.sidebar.selectbox("🎨 Theme", ["🌞 Light", "🌙 Dark"])
+
+# ==========================
 # 🌈 CUSTOM CSS
 # ==========================
-st.markdown("""
+light_css = """
 <style>
-/* Background gradient */
 body {
-    background: linear-gradient(135deg, #f0f4f8, #d9e4ec);
+    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+    color: #333;
 }
-
-/* Card style */
-.card {
-    background: #ffffff;
-    border-radius: 15px;
-    padding: 18px 22px;
-    margin: 15px auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width: 900px;
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-/* Title inside card */
-.card-title {
-    font-weight: bold;
-    font-size: 16px;
-    color: #2b6f3e;
-    margin-bottom: 8px;
-}
-
-/* Footer */
-.footer {
-    text-align:center;
-    margin-top:20px;
-    font-size:13px;
-    color:#555;
+div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
+    background: #ffffffcc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
 }
 </style>
-""", unsafe_allow_html=True)
+"""
+
+dark_css = """
+<style>
+body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #f0f0f0;
+}
+div.stMarkdown, div.stText, div.stRadio, div.stSelectbox {
+    background: #2c2c2ccc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    color: #f0f0f0;
+}
+</style>
+"""
+
+if theme == "🌞 Light":
+    st.markdown(light_css, unsafe_allow_html=True)
+else:
+    st.markdown(dark_css, unsafe_allow_html=True)
 
 # ==========================
 # 🎨 HEADER
@@ -73,12 +88,6 @@ st.write("---")
 # ==========================
 # 📦 ROUTING
 # ==========================
-page = st.sidebar.radio("Go to:", [
-    "Home – Giới thiệu đề tài",
-    "Analysis – Sentiment Analysis",
-    "Training Info – Thông tin mô hình"
-])
-
 if page == "Home – Giới thiệu đề tài":
     from pages.Home import show
     show()
@@ -88,6 +97,7 @@ elif page == "Analysis – Sentiment Analysis":
 elif page == "Training Info – Thông tin mô hình":
     from pages.Training_Info import show
     show()
+
 
 # ==========================
 # 👣 FOOTER – CARDS
